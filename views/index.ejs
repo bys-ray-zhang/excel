@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="SAPP">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	
+	<title>信息管理</title>
+	<link href="/js/bootstrap/css/bootstrap.css" rel="stylesheet">
+	
+</head>
+
+<body class="container" ng-controller="infoController">
+
+	
+	<div class="row">
+	<div class="col-lg-12">
+		<div class="row">
+		     <div class="col-lg-12">
+		       <h1>信息管理</h1>
+		     </div>
+		</div><!-- /.row -->
+	
+		<div class="row">
+		     <div class="col-lg-6">
+				<button type="button" id="loading-example-btn" data-loading-text="Loading..." class="btn btn-primary" ng-click="add()">
+					添加
+				</button>
+				 <button class="btn btn-primary" data-target="#queryPanel" data-toggle="collapse" type="button">
+   					查询
+  				</button>
+		     </div>
+		     
+		</div><!-- /.row -->
+		
+		<div class="row">
+			<div class="collapse" id="queryPanel">
+				<div class="row">
+		     		<div class="col-lg-4 form-group">
+				    	<label for="company">公司名称</label>
+				    	<input type="text" class="form-control" id="company" ng-model="query.company">
+		     		</div>
+		     		<div class="col-lg-4 form-group">
+		     			<label for="province">所在省市</label>
+				    	<input type="text" class="form-control" id="province" ng-model="query.province">
+		     		</div>
+		     		<div class="col-lg-4 form-group">
+		     			<label for="cellphone">电话</label>
+			    		<input type="text" class="form-control" id="cellphone" ng-model="query.phone">
+		     		</div>
+		     		
+		     	</div>
+		     	
+		     	<div class="row">
+		     		<!--<div class="col-lg-3 form-group">
+					    <label for="quantity">2013年产量</label>
+				        <select id="quantity" class="form-control" ng-model="query.quantity">
+					        <option value="1">在海洋/河流/湖泊捕捞的整鱼</option>
+					        <option value="2">副产品（辅助/下脚料等）</option>
+					        <option value="3">国内原料</option>
+					        <option value="4">国外进口原料</option>
+				        </select>
+		     		</div>-->
+		     		<div class="col-lg-4 form-group">
+					    <label for="quantity">2013年产量</label>
+				        <select id="quantity" class="form-control" ng-model="query.quantity">
+					        <option value="1">粗蛋白含量&gt;65%的鱼粉产量</option>
+					        <option value="2">65%&ge;粗蛋白含量&gt;60%的鱼粉产量</option>
+					        <option value="3">60%&ge;粗蛋白含量&gt;55%的鱼粉产量</option>
+					        <option value="4">55%&ge;粗蛋白含量&gt;50%的鱼粉产量</option>
+					        <option value="5">粗蛋白含量&le;50%的鱼粉产量</option>
+				        </select>
+		     		</div>
+					
+		     		<div class="col-lg-1 form-group">
+		     			<label>&nbsp;</label>
+		     			<button type="button" class="form-control btn btn-default" ng-click="query()">查询</button>
+					</div>
+				</div>		   
+		</div>
+		
+		
+		<div class="table-responsive" style="margin-top: 10px;">
+		       <table class="table table-bordered table-hover tablesorter">
+		         <thead>
+		           <tr>
+		           	 <th>序号</th>
+		             <th> 公司名称 <i class="fa fa-sort"></i></th>
+		             <th> 所在省市 </th>
+		             <th> 电话 </th>
+		             <th> 邮件 </th>
+		             <th> 操作 </th>
+		           </tr>
+		         </thead>
+		         <tbody>
+		           <tr ng-repeat="tableItem in tableItems">
+		           	 <td>{{$index + 1}}</td>
+		             <td>{{tableItem.company}}</td>
+		             <td>{{tableItem.province}}</td>
+		             <td>{{tableItem.phone}}</td>
+		             <td>{{tableItem.email}}</td>
+		             <td>
+		             	<a ng-click="remove(tableItem.id)" title="删除"> 删除 </a>
+		             	<a ng-click="update(tableItem.id)" title="修改"> 修改 </a>
+		             </td>
+		           </tr>
+		         </tbody>
+		       </table>
+		</div>
+	</div>
+	</div>
+	
+
+  <div ng-include="'/model'"></div>
+
+    <script language="javascript" src='/js/jquery-1.10.2.js' /></script>
+	<script src="/js/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/js/angular/angular.js"></script>
+	<!-- Page Specific Plugins -->
+	<script src="/js/core/sapp.js"></script>
+	<script src="/js/core/http-service.js"></script>
+    <script src="/js/core/filter.js"></script>
+    <script src="/js/services/info-service.js"></script>
+    <script src="/js/controllers/info-controller.js"></script>
+</body>
+</html>

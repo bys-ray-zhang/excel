@@ -1,0 +1,341 @@
+
+<!-- Modal -->
+<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="infoModelController">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">信息</h4>
+      </div>
+      <div class="modal-body">
+      
+      <form role="form">
+		<div class="row">
+  			<div class="col-lg-6">
+				<div class="form-group">
+				    <label for="company">公司名称</label>
+				    <input type="text" class="form-control" id="company" ng-model="info.company">
+			  	</div>
+			</div>
+		  	<div class="col-lg-6">
+			   	<div class="form-group">
+				    <label for="province">所在省市</label>
+				    <input type="text" class="form-control" id="province" ng-model="info.province">
+				</div>
+		  	</div>
+		</div>
+		
+		<div class="row">
+  			<div class="col-lg-6">		  
+			  	<div class="form-group">
+			    	<label for="phone">电话</label>
+			    	<input type="text" class="form-control" id="phone" ng-model="info.phone">
+			  	</div>
+			</div>
+			<div class="col-lg-6">
+			  	<div class="form-group">
+			    	<label for="email">邮件</label>
+		        	<input class="form-control" id="email" ng-model="info.email">
+			  	</div>
+		  	</div>
+		</div>
+
+		<fieldset>
+		    <legend>2013年产量:</legend>
+			<div class="row">
+	  			<div class="col-lg-12">		  
+				  	<div class="form-group">
+				    	<label for="fishPowder">鱼粉</label>
+				    	<div class="input-group">
+				    		<input type="number" class="form-control" id="fishPowder" onKeyup="checkNum(this)" ng-model="info.fishPowder">
+				    		<span class="input-group-addon">(吨)</span>
+				  		</div>
+				  	</div>
+				</div>
+			</div>
+			
+			<div class="row">
+	  			<div class="col-lg-6">		  
+				  	<div class="form-group">
+				    	<label for="moreSixty">粗蛋白含量&gt;65%的鱼粉产量</label>
+				    	<div class="input-group">
+				    		<input type="number" class="form-control" id="moreSixty" onKeyup="checkNum(this)" ng-model="info.moreSixty">
+				  			<span class="input-group-addon">(吨)</span>
+				  		</div>
+				  	</div>
+				</div>
+				<div class="col-lg-6">
+				  	<div class="form-group">
+				    	<label for="sixty">65%&ge;粗蛋白含量&gt;60%的鱼粉产量</label>
+				    	<div class="input-group">
+			        		<input type="number" class="form-control" id="sixty" onKeyup="checkNum(this)" ng-model="info.sixty">
+				  			<span class="input-group-addon">(吨)</span>
+				  		</div>
+				  	</div>
+			  	</div>
+			</div>    
+			
+			<div class="row">
+	  			<div class="col-lg-6">		  
+				  	<div class="form-group">
+				    	<label for="fiftyFive">60%&ge;粗蛋白含量&gt;55%的鱼粉产量</label>
+				    	<div class="input-group">
+				    		<input type="number" class="form-control" id="fiftyFive" onKeyup="checkNum(this)" ng-model="info.fiftyFive">
+				  			<span class="input-group-addon">(吨)</span>
+				  		</div>
+				  	</div>
+				</div>
+				<div class="col-lg-6">
+				  	<div class="form-group">
+				    	<label for="sixty">55%&ge;粗蛋白含量&gt;50%的鱼粉产量</label>
+				    	<div class="input-group">
+			        		<input type="number" class="form-control" id="fifty" onKeyup="checkNum(this)" ng-model="info.fifty">
+				  			<span class="input-group-addon">(吨)</span>
+				  		</div>
+				  	</div>
+			  	</div>
+			</div>   
+			<div class="row">
+	  			<div class="col-lg-6">		  
+				  	<div class="form-group">
+				    	<label for="lessFifty">粗蛋白含量&le;50%的鱼粉产量</label>
+				    	<div class="input-group">
+				    		<input type="number" class="form-control" id="lessFifty" onKeyup="checkNum(this)" ng-model="info.lessFifty">
+				  			<span class="input-group-addon">(吨)</span>
+				  		</div>
+				  	</div>
+				</div>
+				<div class="col-lg-6">
+				  	<div class="form-group">
+				    	<label for="fishOil">鱼油年产量</label>
+				    	<div class="input-group">
+			        		<input type="number" class="form-control" id="fishOil" onKeyup="checkNum(this)" ng-model="info.fishOil">
+			        		<span class="input-group-addon">(吨)</span>
+				  		</div>
+				  	</div>
+			  	</div>
+			</div>    
+		</fieldset>
+		<fieldset>
+		    <legend>使用何种技术(多选):</legend>  
+			<div class="row">
+	  			<div class="col-lg-6">		  
+				  	<div class="form-group">
+				    	<label class="checkbox-inline">
+							<input type="checkbox" id="dry" value="1" name="dry" ng-model="info.dry">直接干燥（直接用热气进行干燥）
+						</label>
+				  	</div>
+				</div>
+				
+				<div class="col-lg-6">		  
+				  	<div class="form-group">
+				    	<label class="checkbox-inline">
+							<input type="checkbox" id="steam" value="1" name="steam" ng-model="info.steam">蒸气干燥（用蒸气加热进行干燥）
+						</label>
+				  	</div>
+				</div>				
+
+			</div>    
+		</fieldset>  
+		<fieldset>
+		    <legend>原料成份:</legend>  
+			<div class="row">
+	  			<div class="col-lg-6">		  
+				  	<div class="form-group">
+				    	<label for="wholeFish">在海洋/河流/湖泊捕捞的整鱼</label>
+				    	<div class="input-group">
+				    		<input class="form-control" id="wholeFish" ng-model="info.wholeFish">
+				    		<span class="input-group-addon">(吨|%)</span>
+				  		</div>
+				  	</div>
+				</div>
+				<div class="col-lg-6">
+				  	<div class="form-group">
+				    	<label for="other">副产品（辅助/下脚料等）</label>
+			        	<div class="input-group">
+			        		<input class="form-control" id="other" ng-model="info.other">
+			        		<span class="input-group-addon">(吨|%)</span>
+				  		</div>
+				  	</div>
+			  	</div>
+			</div>
+			<div class="row">
+	  			<div class="col-lg-6">		  
+				  	<div class="form-group">
+				    	<label for="national">国内原料</label>
+				    	<div class="input-group">
+				    		<input class="form-control" id="national" ng-model="info.national">
+				    		<span class="input-group-addon">(吨|%)</span>
+				  		</div>
+				  	</div>
+				</div>
+				<div class="col-lg-6">
+				  	<div class="form-group">
+				    	<label for="international">国外进口原料</label>
+				    	<div class="input-group">
+			        		<input class="form-control" id="international" ng-model="info.international">
+			        		<span class="input-group-addon">(吨|%)</span>
+				  		</div>
+				  	</div>
+			  	</div>
+			</div>
+		</fieldset>
+		<fieldset>
+		    <legend>何种原料鱼生产鱼料鱼油，每公斤原料鱼的鱼粉及鱼油出成率是多少？</legend>  
+			<div class="row">
+	  			<div class="col-lg-4">		  
+				  	<div class="form-group">
+				    	<label for="category1">种类</label>
+				    	<input type="text" class="form-control" id="category1" ng-model="info.category1">
+				  	</div>
+				</div>
+				<div class="col-lg-4">
+				  	<div class="form-group">
+				    	<label for="fishPoder1">鱼粉出成率</label>
+				    	<div class="input-group">
+			        		<input class="form-control" id="fishPowder1" ng-model="info.fishPoder1">
+			        		<span class="input-group-addon">%</span>
+				  		</div>
+				  	</div>
+			  	</div>
+				<div class="col-lg-4">
+				  	<div class="form-group">
+				    	<label for="fishOil1">鱼油出成率</label>
+				    	<div class="input-group">
+			        		<input class="form-control" id="fishOil1" ng-model="info.fishOil1">
+			        		<span class="input-group-addon">%</span>
+				  		</div>
+				  	</div>
+			  	</div>
+			</div>
+			<div class="row">
+	  			<div class="col-lg-4">		  
+				  	<div class="form-group">
+				    	<label for="category2">种类</label>
+				    	<input type="text" class="form-control" id="category2" ng-model="info.category2">
+				  	</div>
+				</div>
+				<div class="col-lg-4">
+				  	<div class="form-group">
+				    	<label for="fishPoder2">鱼粉出成率</label>
+				    	<div class="input-group">
+			        		<input class="form-control" id="fishPowder2" ng-model="info.fishPoder2">
+			        		<span class="input-group-addon">%</span>
+				  		</div>
+				  	</div>
+			  	</div>
+				<div class="col-lg-4">
+				  	<div class="form-group">
+				    	<label for="fishOil2">鱼油出成率</label>
+				    	<div class="input-group">
+			        		<input class="form-control" id="fishOil2" ng-model="info.fishOil2">
+			        		<span class="input-group-addon">%</span>
+				  		</div>
+				  	</div>
+			  	</div>
+			</div>
+			<div class="row">
+	  			<div class="col-lg-4">		  
+				  	<div class="form-group">
+				    	<label for="category3">种类</label>
+				    	<input type="text" class="form-control" id="category3" ng-model="info.category3">
+				  	</div>
+				</div>
+				<div class="col-lg-4">
+				  	<div class="form-group">
+				    	<label for="fishPoder3">鱼粉出成率</label>
+				    	<div class="input-group">
+			        		<input class="form-control" id="fishPowder3" ng-model="info.fishPoder3">
+			        		<span class="input-group-addon">%</span>
+				  		</div>
+				  	</div>
+			  	</div>
+				<div class="col-lg-4">
+				  	<div class="form-group">
+				    	<label for="fishOil3">鱼油出成率</label>
+				    	<div class="input-group">
+			        		<input class="form-control" id="fishOil3" ng-model="info.fishOil3">
+			        		<span class="input-group-addon">%</span>
+				  		</div>
+				  	</div>
+			  	</div>
+			</div>
+
+			<div class="row">
+	  			<div class="col-lg-4">		  
+				  	<div class="form-group">
+				    	<label for="category4">种类</label>
+				    	<input type="text" class="form-control" id="category4" ng-model="info.category4">
+				  	</div>
+				</div>
+				<div class="col-lg-4">
+				  	<div class="form-group">
+				    	<label for="fishPoder4">鱼粉出成率</label>
+				    	<div class="input-group">
+			        		<input class="form-control" id="fishPowder4" ng-model="info.fishPoder4">
+			        		<span class="input-group-addon">%</span>
+				  		</div>
+				  	</div>
+			  	</div>
+				<div class="col-lg-4">
+				  	<div class="form-group">
+				    	<label for="fishOil4">鱼油出成率</label>
+				    	<div class="input-group">
+			        		<input class="form-control" id="fishOil4" ng-model="info.fishOil4">
+			        		<span class="input-group-addon">%</span>
+				  		</div>
+				  	</div>
+			  	</div>
+			</div>
+			<div class="row">
+	  			<div class="col-lg-4">		  
+				  	<div class="form-group">
+				    	<label for="category5">种类</label>
+				    	<input type="text" class="form-control" id="category5" ng-model="info.category5">
+				  	</div>
+				</div>
+				<div class="col-lg-4">
+				  	<div class="form-group">
+				    	<label for="fishPoder5">鱼粉出成率</label>
+				    	<div class="input-group">
+			        		<input class="form-control" id="fishPowder5" ng-model="info.fishPoder5">
+			        		<span class="input-group-addon">%</span>
+				  		</div>
+				  	</div>
+			  	</div>
+				<div class="col-lg-4">
+				  	<div class="form-group">
+				    	<label for="fishOil5">鱼油出成率</label>
+				    	<div class="input-group">
+			        		<input class="form-control" id="fishOil5" ng-model="info.fishOil5">
+			        		<span class="input-group-addon">%</span>
+				  		</div>
+				  	</div>
+			  	</div>
+			</div>
+		</fieldset>
+		
+		
+		
+		 
+      </form>
+		
+		
+		
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"> 关 闭 </button>
+        <button type="button" class="btn btn-primary" ng-click="save()"> 保 存 </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+function checkNum(obj){
+	var o = $(obj);
+	o.val(o.val().replace(/\D/g,''));
+}
+
+</script>

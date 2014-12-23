@@ -1,0 +1,8 @@
+node_modules
+.settings
+.buildpath
+.jshintrc
+.project
+*.psd
+.DS_Store
+nodejs

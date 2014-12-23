@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var IOUtil = require('./IOUtil');
 var infos = null;
+var fileName = '.info';
 
 router.get('/', function(req, res) {
 	res.render('index');
@@ -12,7 +13,7 @@ router.get('/model', function(req, res) {
 });
 
 router.get('/load', function(req, res){
-	IOUtil.readFile('info', function(err, data){
+	IOUtil.readFile(fileName, function(err, data){
 		if(!err)
 		{
 			return [];
@@ -26,7 +27,7 @@ router.get('/load', function(req, res){
 
 router.post('/add', function(req, res){
 	var body = JSON.stringify(req.body);
-	IOUtil.writeFile('info', body);
+	IOUtil.writeFile(fileName, body);
 	if(infos === null)
 	{
 		infos = [];
@@ -40,7 +41,7 @@ router.post('/add', function(req, res){
 });
 
 router.post('/update', function(req, res){
-	IOUtil.removeFile('info', function(err){
+	IOUtil.removeFile(fileName, function(err){
 		if(err)
 			return;
 		var body = JSON.stringify(req.body);
@@ -67,14 +68,14 @@ router.post('/update', function(req, res){
 });
 
 router.get('/remove', function(req, res){
-		IOUtil.removeFile('info', function(err){
+		IOUtil.removeFile(fileName, function(err){
 			if(err)
 				return;
 			var id = req.query.id;
 			var index = 0;
 			for (var i = 0; i < infos.length; i++)
 			{
-				console.log('infos[i]:  '+infos[i]);
+				//console.log('infos[i]:  '+infos[i]);
 				var tmp = infos[i];
 				if (typeof infos[i] == 'string')
 				{
@@ -110,7 +111,7 @@ function writeFile()
 		}
 		var a = infos.join('\n');
 		//console.log('a:  '+ a);
-		IOUtil.writeFile('info', a);
+		IOUtil.writeFile(fileName, a);
 	}
 }
 
